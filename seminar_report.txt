@@ -1,0 +1,795 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage[top=50pt,bottom=50pt,left=60pt,right=70pt]{geometry}
+\usepackage{graphicx}
+\usepackage{pslatex}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[document]{ragged2e}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{listings}
+\usepackage{url}
+\usepackage{fancyhdr}
+\usepackage{tocloft}
+\usepackage{sectsty}
+\usepackage[titletoc]{appendix}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{multirow}
+\usepackage{subcaption}
+
+\graphicspath{ {images/} }
+
+\title{AN ARCHITECTURE COMBINING BLOCKCHAIN, DOCKER AND CLOUD STORAGE FOR IMPROVING DIGITAL PROCESSES IN CLOUD MANUFACTURING}
+\author{SAN BABY FRANCIS}
+
+\renewcommand\cftchapfont{\large\bfseries}
+\renewcommand\cftsecfont{\large}
+\renewcommand\cftfigfont{\large}
+\renewcommand\cfttabfont{\large}
+
+\renewcommand\cftchappagefont{\large\bfseries}
+\renewcommand\cftsecpagefont{\large}
+
+\renewcommand\cftchapafterpnum{\vskip20pt}
+\renewcommand\cftsecafterpnum{\vskip20pt}
+\renewcommand\cftsubsecafterpnum{\vskip16pt}
+\renewcommand\cftfigafterpnum{\vskip16pt\par}
+\renewcommand\cfttabafterpnum{\vskip16pt\par}
+
+\sectionfont{\LARGE\mdseries}
+\subsectionfont{\large\mdseries}
+\chapternumberfont{\LARGE\mdseries} 
+\chaptertitlefont{\huge}
+
+\begin{document}
+
+
+\begin{titlepage}
+	\begin{center}
+
+	\textsc{\Large\mdseries}\\
+	\line(1,0){450}\\
+	[0.20in]
+	\Large\bfseries\textbf\ttfamily{AN ARCHITECTURE COMBINING BLOCKCHAIN, DOCKER AND CLOUD STORAGE FOR IMPROVING DIGITAL PROCESSES IN CLOUD MANUFACTURING}\\
+	[0.20mm]
+	\line(1,0){450}\\
+	[1cm]
+	\textsc{\large\mdseries A SEMINAR REPORT}\\	
+	[0.30cm]
+	\textsc{\large\itshape\mdseries by}\\	
+	[0.60cm]
+	\textsc{\large SAN BABY FRANCIS( VJC19CS108 )}\\
+	[0.60cm]
+	\textsc{\large\itshape\mdseries in partial fulfillment for the award of the degree}\\
+	[0.50cm]
+	\textsc{\large\itshape\mdseries of}\\
+	[0.50cm]
+	\textsc{\large\bfseries BACHELOR OF TECHNOLOGY}\\
+	[0.50cm]
+	\textsc{\large\itshape\mdseries in}\\
+	[0.50cm]
+	\textsc{\large\bfseries COMPUTER SCIENCE AND ENGINEERING}\\
+	[0.40cm]
+	\textsc{\large\bfseries APJ ABDUL KALAM TECHNOLOGICAL UNIVERSITY}\\	
+	[1.5cm]
+	\includegraphics[scale=0.60]{vjcet.png}\\
+	[1.5cm]
+	\textsc{\large\bfseries DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING}\\
+	[0.05cm]
+	\textsc{\large\bfseries VISWAJYOTHI COLLEGE OF ENGINEERING AND}\\
+	[0.05cm]
+	\textsc{\large\bfseries TECHNOLOGY, VAZHAKULAM}\\
+	[1cm]
+	\textsc{\large\bfseries DECEMBER 2022}\\
+
+	\end{center}
+
+\end{titlepage}
+
+
+
+\newpage
+
+	\begin{center}
+	\textsc{\large\mdseries}\\
+	\line(1,0){450}\\
+	[0.20in]
+	\Large\bfseries\textbf\ttfamily{AN ARCHITECTURE COMBINING BLOCKCHAIN, DOCKER AND CLOUD STORAGE FOR IMPROVING DIGITAL PROCESSES IN CLOUD MANUFACTURING}\\
+	[0.20mm]
+	\line(1,0){450}\\
+	[1cm]
+	\textsc{\large\mdseries A SEMINAR REPORT}\\	
+	[0.20cm]
+	\textsc{\large\itshape\mdseries by}\\	
+	[0.20cm]
+	\textsc{\large SAN BABY FRANCIS( VJC19CS108 )}\\
+	[0.30cm]
+	\textsc{\large\itshape\mdseries in partial fulfillment for the award of the degree}\\
+	[0.25cm]
+	\textsc{\large\itshape\mdseries of}\\
+	[0.25cm]
+	\textsc{\large\bfseries BACHELOR OF TECHNOLOGY}\\
+	[0.25cm]
+	\textsc{\large\itshape\mdseries in}\\
+	[0.25cm]
+	\textsc{\large\bfseries COMPUTER SCIENCE AND ENGINEERING}\\
+	[0.20cm]
+	\textsc{\large\bfseries APJ ABDUL KALAM TECHNOLOGICAL UNIVERSITY}\\
+	[0.15cm]
+	\textsc{\large\itshape\mdseries under the guidance}\\
+	[0.25cm]
+	\textsc{\large\itshape\mdseries of}\\
+	[0.25cm]
+	\textsc{\large\bfseries\upshape Mrs. Remya Paul}\\
+	[0.10cm]
+	\textsc{\large\bfseries\upshape Assistant Professor, CSE Dept.}\\
+	[1cm]
+	\includegraphics[scale=0.60]{vjcet.png}\\
+	[1cm]
+	\textsc{\large\bfseries DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING}\\
+	[0.05cm]
+	\textsc{\large\bfseries VISWAJYOTHI COLLEGE OF ENGINEERING AND}\\
+	[0.05cm]
+	\textsc{\large\bfseries TECHNOLOGY, VAZHAKULAM}\\
+	[1cm]
+	\textsc{\large\bfseries DECEMBER 2022}\\
+
+	
+	\end{center}
+
+\thispagestyle{empty}
+
+
+\newpage
+\thispagestyle{empty}
+
+	\begin{center}
+
+	\textsc{\large\bfseries VISWAJYOTHI COLLEGE OF ENGINEERING AND}\\
+	[0.15cm]
+	\textsc{\large\bfseries TECHNOLOGY, VAZHAKULAM}\\
+	[0.50cm]
+	\textsc{\large\bfseries\upshape Department of Computer Science and Engineering}\\	
+	[1cm]
+	\textsc{\large\bfseries\upshape Vision}\\
+	[0.50cm]
+	\textsc{\large\mdseries\upshape Moulding socially responsible and professionally competent Computer Engineers to adapt}\\
+	[0.10cm]
+	\textsc{\large\mdseries\upshape to the dynamic technological landscape}\\
+	
+	\begin{center}
+		
+		\textsc{\large\bfseries }\\
+		[0.50cm]
+		\textsc{\large\bfseries\upshape Mission}\\
+		[0.50cm]
+		\justify
+		\begin{enumerate}
+			\item\large Foster the principles and practices of computer science to empower life-long
+			learning and build careers in software and hardware development.
+			%\vspace{0.3cm}
+			\item\large Impart value education to elevate students to be successful, ethical and
+			effective problem-solvers to serve the needs of the industry, government, society
+			and the scientific community.
+			%\vspace{0.3cm}
+			\item\large Promote industry interaction to pursue new technologies in Computer Science and
+			provide excellent infrastructure to engage faculty and students in scholarly
+			research activities.
+
+		\end{enumerate}
+
+	\end{center}
+
+	\begin{center}
+
+		\textsc{\normalsize\mdseries\upshape }\\
+		[0.50cm]
+		\textsc{\large\bfseries\upshape Program Educational Objectives}\\
+		\justify
+		\textsc{\large\bfseries }\\
+		[0.05cm]
+		\textbf{\large Our Graduates }\\
+		\begin{enumerate}
+			\item\large Shall have creative aid critical reasoning skills to solve technical problems
+			ethically and responsibly to serve the society.
+			%\vspace{0.3cm}
+			\item\large Shall have competency to collaborate as a team member and team leader to address
+			social, technical and engineering challenges.
+			%\vspace{0.3cm}
+			\item\large Shall have ability to contribute to the development of the next generation of information technology either through innovative research or through practice in a corporate setting
+			%\vspace{0.3cm}
+			\item\large Shall have potential to build start-up companies with the foundations, knowledge and experience they acquired from undergraduate education
+
+		\end{enumerate}
+
+	\textsc{\Large\bfseries }\\
+
+	\end{center}
+
+	\begin{center}
+
+		\textsc{\large\bfseries\upshape Program Outcomes}\\
+		\textsc{\large\bfseries }\\
+		[0.20cm]
+		\justify
+		\begin{enumerate}
+
+	\item \textbf{\large Engineering knowledge}\large:Apply the knowledge of mathematics, science, engineering fundamentals, and an engineering specialization to the solution of complex engineering problems. ~
+	%\vspace{0.5cm}
+	\item \textbf{\large Problem analysis}\large:Identify, formulate, review research literature, and analyze complex engineering problems reaching substantiated conclusions using first principles of mathematics, natural sciences, and engineering sciences ~
+	%\vspace{0.5cm}
+	\item \textbf{\large Design / development of solutions}\large:Design solutions for complex engineering problems and design system components or processes that meet the specified needs with appropriate consideration for the public health and safety, and the cultural, societal, and environmental considerations.~
+	%\vspace{0.5cm}
+	\item \textbf{\large Conduct investigations of complex problems}\large:Use research-based knowledge and research methods including design of experiments, analysis and interpretation of data, and synthesis of the information to provide valid conclusions.~
+	%\vspace{0.5cm}
+	\item \textbf{\large Modern tool usage}\large:Create, select, and apply appropriate techniques, resources, and modern engineering and IT tools including prediction and modelling to complex engineering activities with an understanding of the limitations.~
+	%\vspace{0.5cm}
+	\item \textbf{\large The engineer and society:}\large Apply reasoning informed by the contextual knowledge to assess societal, health, safety, legal and cultural issues and the consequent responsibilities relevant to the professional engineering practice.~
+	%\vspace{0.5cm}
+	\item \textbf{\large Environment and sustainability:}\large Understand the impact of the professional engineering solutions in societal and environmental contexts, and demonstrate the knowledge of, and need for sustainable development.~
+	%\vspace{0.5cm}
+	\item \textbf{\large Ethics:}\large Apply ethical principles and commit to professional ethics and responsibilities and norms of the engineering practice
+	%\vspace{0.5cm}
+	\item \textbf{\large Individual and team work:}\large Function effectively as an individual, and as a member or leader in diverse teams, and in multidisciplinary settings ~
+	%\vspace{0.5cm}
+	\item \textbf{\large Communication:}\large Communicate effectively on complex engineering activities with the engineering community and with society at large, such as, being able to comprehend and write effective reports and design documentation, make effective presentations, and give and receive clear instructions. ~
+	%\vspace{0.5cm}
+	\item \textbf{\large Project management and finance}\large: Demonstrate knowledge and understanding
+	of the engineering and management principles and apply these to one's own work,
+	as a member and unread in a team, to manage projects and in multidisciplinary
+	environments.~
+	%\vspace{0.5cm}
+	\item \textbf{\large Life-long learning}\large :Recognize the need for, and have the preparation and ability to engage in independent and life-long learning in the broadest context of technological change.~
+
+		\end{enumerate}
+	
+	\thispagestyle{empty}
+
+	\end{center}
+
+	\begin{center}
+		
+		\textsc{\large\bfseries }\\
+		[0.50cm]
+		\textsc{\large\bfseries\upshape Program Specific Outcomes}\\
+		[0.70cm]
+		\justify
+		\begin{enumerate}
+			\item\large Ability to integrate theory and practice to construct software systems of varying complexity
+			%\vspace{0.1cm}
+			\item\large Able to Apply Computer Science skills, tools and mathematical techniques to analyse, design and model complex systems
+			%\vspace{0.4cm}
+			\item\large Ability to design and manage small-scale projects to develop a career in a related industry.
+
+			\end{enumerate}
+
+		\end{center}
+
+	\end{center}
+
+\thispagestyle{empty}
+
+\newpage
+
+	\begin{center}
+	\textsc{\large\bfseries }\\
+	\textsc{\large\bfseries DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING}\\	
+	[0.50cm]
+	\textsc{\large\bfseries VISWAJYOTHI COLLEGE OF ENGINEERING AND TECHNOLOGY}\\
+	[0.30cm]
+	\textsc{\large\bfseries VAZHAKULAM, 686670}\\
+	[1.5cm]
+	\includegraphics[scale=0.60]{vjcet.PNG}\\
+	[1.5cm]
+	\textsc{\Large\bfseries CERTIFICATE}\\
+	[1.5cm]
+	
+	\justify \fontsize{13}{26} \selectfont{ Certified that seminar work entitled \textbf{" AN ARCHITECTURE COMBINING BLOCKCHAIN, DOCKER AND CLOUD STORAGE FOR IMPROVING DIGITAL PROCESSES IN CLOUD MANUFACTURING "} is a bonafide work done by \textbf{Mr. SAN BABY FRANCIS} University Register No. \textbf{VJC19CS108} in partial fulfillment for the  award of the Degree of Bachelor of Technology in Computer Science \& Engineering from APJ Abdul Kalam Technological University, Thiruvananthapuram, Kerala during the academic year 2022-2023}	
+
+	\vspace{1cm}
+
+	\begin{minipage}{.35\textwidth}
+	%\vspace{1cm}
+		\vspace{1cm}
+		\begin{flushleft}
+			\textbf{Mr. Amel Austine}\\
+			\text{Head Of Department}\\
+			\text{Dept. of CSE}\\
+			\text{VJCET}\\
+		\end{flushleft}
+	\end{minipage}
+	%\vspace{1cm}
+	\begin{minipage}{.35\textwidth}
+		\vspace{2cm}
+		\begin{center} 
+			\begin{flushleft} 
+				\textbf{Mrs. Lithiya Sara Babu}\\
+				\text{Seminar Coordinator}\\
+				\text{Asst. Professor}\\
+				\text{Dept. of CSE}\\
+				\text{VJCET}\\
+			\end{flushleft}
+		\end{center}
+	\end{minipage}
+	%\vspace{1cm}
+	\begin{minipage}{.35\textwidth}	
+		\vspace{2cm}
+		\begin{flushright} 
+			\begin{flushleft}
+				\textbf{Mrs. Remya Paul}\\
+				\text{Seminar Guide}\\
+				\text{Asst. Professor}\\
+				\text{Dept. of CSE}\\
+				\text{VJCET}\\
+			\end{flushleft}
+		\end{flushright}
+	\end{minipage}
+	
+\end{center}
+
+\thispagestyle{empty}
+
+
+
+\newpage
+
+	\begin{center}
+	\textsc{\large\bfseries }\\
+	[3cm]
+	\textsc{\Large\bfseries ACKNOWLEDGEMENT}\\
+	[1.5cm]
+	\justify \fontsize{12}{24} \selectfont {First and foremost, I thank \textbf {\normalsize {$ \: $God Almighty }} for His divine grace and blessings in making all these possible. May He continue to lead me in the years. It is my privilege to render my heartfelt thanks to our most beloved manager, \textbf {\normalsize {$ \: $Rev. Msgr. Dr. Pius Malekandathil }}, our director \textbf {\normalsize {$ \: $Rev. Fr. Paul Nedumpurath }} and our Principal \textbf {\normalsize {$ \: $Dr. K K Rajan}} for providing me the opportunity to do this seminar during the fourth year (2022) of my B.Tech degree course. I am deeply thankful to our Head of the Department, \textbf {\normalsize {$ \: $Mr. Amel Austine}} for his support and encouragement. I would like to express my sincere gratitude and heartfelt thanks to my seminar guide \textbf {\normalsize {$ \: $Mrs. Remya Paul}}, Asst. Professor, Department of Computer Science and Engineering for her motivation, assistance and help for the seminar. I also express sincere thanks to the Seminar Coordinator \textbf {\normalsize {$ \: $Mrs. Lithiya Sara Babu}}, Asst. Professor, Department of Computer Science and Engineering for her guidance and support. I also thank all the staff members of the Computer Science Department for providing their assistance and support. Last, but not the least, I thank all my friends and family for their valuable feedback from time to time as well as their help and encouragement.}
+	\end{center}
+
+\thispagestyle{empty}
+
+\newpage
+
+	\begin{center}
+	\textsc{\large\bfseries }\\
+	[3cm]
+	\textsc{\Large\bfseries ABSTRACT}\\
+	[1cm]
+	\justify \fontsize{12}{24} \selectfont {When verifiable transactions between untrusted parties are concerned in a safe and reliable
+environment, the decentralized and tamper-proof structure of Blockchain technology is suited
+for a vast class of business domains, including Cloud Manufacturing. However, the stiffness
+of existing solutions, that are unable to provide and implement heterogeneous services in a
+Cloud environment, emphasizes the need for a standard framework to overcome this limit and
+improve collaboration. This system uses a Blockchain based platform designed
+with Smart Contracts for improving digital processes in a manufacturing environment. The
+primary contribution is the integration of two popular cloud technologies within the
+Blockchain: Docker and Cloud Storage. Each process available in the platform requires input
+files and produces output files by using cloud storage as a repository and it is delivered by the
+owner as a self-contained Docker image, whose digest is safely stored in the chain. With the purpose of selecting the fastest node for each new process instance required by
+consumers, a task assignment problem is introduced based on a deep learning approach.}
+	
+	\justify \fontsize{12}{20} \selectfont {\textbf{Key Words : - } Blockchain, Docker, Cloud Storage, Digital Processes, Cloud Manufacturing}
+	
+	
+	\end{center}
+
+\thispagestyle{empty}
+
+\newpage
+	
+	\textsc{\large\bfseries }\\
+	[0.5cm]
+	\tableofcontents
+	\addtocontents{toc}{\protect\thispagestyle{empty}}
+	\pagenumbering{gobble}
+
+
+
+\thispagestyle{empty}
+
+
+\newpage\textsc{\large\bfseries }\\
+	[0.5cm]
+	\listoffigures
+	\addcontentsline{toc}{chapter}{List of Figures}
+	\pagenumbering{roman}
+	
+
+\newpage
+	\textsc{\large\bfseries }\\
+	[1.5cm]
+	\textsc{\Huge\bfseries\upshape List of Abbreviations}
+	\setcounter{page}{2}
+	\addcontentsline{toc}{chapter}{List of Abbreviations}
+	 \pagenumbering{roman}
+    \setcounter{page}{2}
+	\vspace{2cm}\\
+	\textsc{\Large\bfseries\justify BPM  \mdseries\hspace{2.0cm}\upshape\qquad\qquad Business Process Management }\\
+	\vspace{0.3cm}
+	\textsc{\Large\bfseries\justify ANN  \mdseries\hspace{2.0cm}\upshape\qquad\qquad Artificial Neural Network  }\\
+	\vspace{0.3cm}
+	\textsc{\Large\bfseries\justify CAD \mdseries\hspace{2.0cm}\upshape\qquad\qquad Computer Aided Design}\\
+	\vspace{0.3cm}
+	
+	\textsc{\Large\bfseries\justify PGA \mdseries\hspace{2.0cm}\upshape\qquad\qquad Permission Granting Application}\\
+	\vspace{0.3cm}
+	\textsc{\Large\bfseries\justify LDS \mdseries\hspace{2.1cm}\upshape\qquad\qquad  Lens Design System }\\
+	\vspace{0.3cm}
+	\textsc{\Large\bfseries\justify CNC \mdseries\hspace{2.0cm}\upshape\qquad\qquad Computer Numerical Control}\\
+		\vspace{0.3cm}
+		\textsc{\Large\bfseries\justify LMS \mdseries\hspace{2.0cm}\upshape\qquad\qquad Lens Manufacturing System}\\
+	\vspace{0.3cm}
+	\textsc{\Large\bfseries\justify MAE \mdseries\hspace{2.9cm}\upshape\qquad\qquadTerm Mean Absolute Error }\\
+	\vspace{0.3cm}
+	\textsc{\Large\bfseries\justify MSE \mdseries\hspace{2.0cm}\upshape\qquad\qquad Mean Squared Error}\\
+	\vspace{0.3cm}
+	\textsc{\Large\bfseries\justify RMSE \mdseries\hspace{1.6cm}\upshape\qquad\qquad Root Mean Squared Error}\\
+	\vspace{0.3cm}
+	\textsc{\Large\bfseries\justify RELU \mdseries\hspace{1.65cm}\upshape\qquad\qquad Rectified Linear Unit }\\
+	\vspace{0.3cm}
+\clearpage
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{An Architecture Combining Blockchain, Docker and Cloud Storage for Improving Digital Processes in Cloud Manufacturing}
+
+\rfoot{Page \thepage}
+\lfoot{\footnotesize{Dept. of Computer Science \& Engineering, VJCET}}
+
+\newpage
+\pagenumbering{roman}
+\renewcommand{\baselinestretch}{1.50}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{1pt}
+
+
+\newpage
+
+\pagenumbering{roman}
+\setcounter{page}{2}
+
+
+\renewcommand{\bibname}{References}
+
+\chapter{	INTRODUCTION}
+\thispagestyle{fancy}
+\pagenumbering{arabic}
+
+
+\large\justify  Cloud Computing significantly changed the way industries do their business today. In 2020, enterprise spending on
+cloud infrastructure services amounted to almost 130 billion
+U.S. dollars, while in 2011 it was only 3.5 billion. In manufacturing industry, the adoption of cloud technologies lead to the
+new paradigm of Cloud Manufacturing, which enables
+companies to provide and receive services over Internet via
+an intelligent service-oriented architecture.
+
+\large\justify Decentralization is a key factor both in Cloud
+Computing and Cloud Manufacturing as distributed architectures improve services reliability, scalability and performance when compared to traditional on-premise centralized
+approaches. Similarly, security is also a key concern
+in these contexts as data elaborated in the cloud may be
+compromised, altered or stolen and the integrity of services
+could be severely affected.
+
+\large\justify Blockchain, as a secure ledger for storing transactions, plays a strategic role in modern distributed architectures and the recent literature has shown a great interest about this revolutionary technology over the last decade. A systematic review provided in, shows that Blockchain based application have been adopted in many business domains: from popular financial applications, such as cryptocurrencies, to completely different fields, such as Business and Industry, IoT, Governance, Education, Health, and Privacy and Security. Smart Contracts are typically the core component on which most of these applications are based. A Smart Contract is essentially an algorithm that is coded and executed in the Blockchain itself with the purpose of regulating a specific agreement between parties participating in transactions.
+
+\large\justify Moreover, the advantages of using Blockchain in such environments and, specifically, for Additive Manufacturing and 3D printing is noticeable. In that respect, the authors observe that preserving the intellectual property to secure CAD models is a critical issue in such context and that the Blockchain technology can be efficiently implemented to license the models and secure the whole manufacturing process. In addition, a concrete example of a Blockchain and Smart Contract based architecture for Additive Manufacturing is proposed with the specific purpose of enforcing agreements between design and 3D printing companies and preserve the intellectual property of design files.
+
+\large\justify This system focuses on particular manufacturing processes that produce pieces in small lots or in single unit, such as ophthalmic lenses or 3D printed products. Such types of manufacturing procedures require specific digital processes, computational intensive tasks and raise standardization, cybersecurity and intellectual property preservation issues.
+
+\large\justify Cloud solutions and standardized frameworks can enable different actors to effectively provide, update and consume any kind of process delivered as a service. The absence of such standard framework in current related literature makes it hard to flexibly integrate a generic software logic in such environments and impacts on servitization process.
+
+\large\justify Motivated by this open issue, this system is a decentralized, distributed, cybersecure and collaborative platform to improve digital processes in Cloud Manufacturing environments. The proposed platform is based on Ethereum, which is one of the most popular Blockchain implementations, and Smart Contracts. In addition, different actors such as Process Owner, Process Consumer and Process Runner cooperate in the platform to handle process life cycle and effectively execute digital business processes.
+
+
+\chapter{	RELATED WORKS}
+
+\thispagestyle{fancy}
+
+
+
+
+
+\large\justify Blockchain technology has the potential to revolutionize the field of cloud manufacturing by providing secure, decentralized storage and communication. In particular, blockchain has been shown to have strong performance in terms of decentralization and security, making it well-suited for applications in cloud manufacturing.
+
+\large\justify In the context of Industry 4.0, blockchain-based solutions have been proposed for improving the security and reliability of digital manufacturing processes. For example, in "Blockchain-secured Smart Manufacturing in Industry 4.0", the authors propose a blockchain-based architecture for smart manufacturing, which uses smart contracts to enforce agreements and secure data. The architecture is designed to enable decentralized and secure communication between different actors in the manufacturing process, such as suppliers, manufacturers, and customers. The authors demonstrate the effectiveness of the proposed architecture through simulation and analysis, showing that it can provide strong security and reliability in smart manufacturing environments.
+
+\section{Blockchain-secured Smart Manufacturing}
+\large\justify In "Blockchain-secured Smart Manufacturing in Industry 4.0" by J. Leng, S. Ye, M. Zhou, J. L. Zhao, Q. Liu, W. Guo, W. Cao, and L. Fu, the potential of blockchain technology to enable decentralized and secure communication between different actors in the manufacturing process is discussed. A blockchain-based architecture for smart manufacturing is proposed, which uses smart contracts to enforce agreements and secure data. The architecture is designed to provide strong security and reliability in smart manufacturing environments, and is evaluated through simulation and analysis.
+
+\large\justify The system uses a simulation model to evaluate the performance of the proposed architecture in terms of security and reliability. The results of the simulation show that the architecture can effectively protect against various security threats, such as malicious attacks and unauthorized access to data. The authors also analyze the reliability of the architecture, and show that it can provide strong consistency and availability of data and services in the manufacturing process.
+
+\section{Intellectual Property Protection in Additive Manufacturing}
+\large\justify In "A Blockchain based platform for Smart Contracts and Intellectual Property Protection for the Additive Manufacturing Industry" by A. Haridas, A. A. Samad, D. Vysakh, and V. Pathari, a blockchain-based platform that uses smart contracts to manage the licensing and enforcement of intellectual property in the additive manufacturing industry is proposed. The platform allows for the secure and decentralized storage of CAD models and design files, and provides mechanisms for enforcing agreements between different actors in the manufacturing process.
+
+\large\justify The proposed platform is implemented, evaluated and tested using multiple actors, including process owners, process consumers, and process runners. The process owners are responsible for creating and managing CAD models and design files, and can license these assets to process consumers. The process consumers are responsible for using the licensed assets to create products, and can delegate the execution of the manufacturing process to process runners. The process runners are responsible for executing the manufacturing process and producing the final products, and can provide feedback on the quality and performance of the products to the process owners.
+
+
+\newpage
+\chapter{PROPOSED SYSTEM}
+\large\justify The proposed system is designed to improve digital processes in cloud manufacturing environments. The system combines blockchain, Docker, and cloud storage technologies to provide a comprehensive and flexible solution for managing and executing digital processes in manufacturing.
+
+\large\justify The integration of Blockchain technology in the proposed system enables decentralized and secure storage and communication of data and agreements. This allows different actors in the manufacturing process, such as suppliers, manufacturers, and customers, to securely and reliably access and update data, and ensures the integrity and immutability of transactions. The use of smart contracts in the blockchain allows for the enforcement of agreements and the protection of intellectual property in the manufacturing process.
+
+\large\justify The use of Docker technology in the system enables the creation and management of standardized containers for applications and data. This allows different actors in the manufacturing process to easily share and integrate software and data, and provides a flexible framework for executing digital processes. The containers provide a standardized and isolated environment for applications, allowing them to be easily deployed and executed on different machines and platforms.
+
+\large\justify Moreover, the addition of cloud storage technology in the proposed system enables scalable and highly available storage for data and applications. This allows the system to handle large volumes of data and transactions, and ensures that it can continue to operate even if some components fail. The use of cloud storage also enables decentralized and distributed execution of digital processes, allowing different actors in the manufacturing process to collaborate and share resources in a flexible and scalable manner.
+
+\large\justify Overall, the system in this offers a number of advantages over existing systems for digital processes in cloud manufacturing. The integration of multiple technologies allows the system to address a wide range of requirements and challenges in manufacturing environments, and the use of standardized and flexible containers enables the easy sharing and integration of software and data. The decentralized and secure storage and communication of data and agreements ensures the integrity and reliability of the manufacturing process, and the scalability and availability of the system enables it to handle large volumes of data and transactions.
+
+\section{Overview} 
+
+\large\justify Here, a novel approach is introduced for implementing Business Process Management (BPM) in the blockchain. The approach leverages the features of two popular cloud technologies: Docker and cloud storage. The proposed platform is specifically designed for manufacturing environments, but other implementations are also possible.
+
+\large\justify Based on the BPM life-cycle, the authors suggest the use of Docker in the process execution phase, assuming that the process to be executed is a digital process. They also propose the use of cloud storage for storing process inputs and outputs, and the use of blockchain and smart contracts for process implementation and monitoring. Additionally, a basic task assignment problem based on execution time prediction is introduced, which is performed using an Artificial Neural Network (ANN) trained with past process run metrics.
+
+\large\justify The proposed platform architecture is illustrated in Figure 3.1. The core of the platform is a consortium blockchain built on Ethereum, which implements two main use cases: Create Process and Consume Process. These use cases represent the process life-cycle, which is orchestrated by the Process Smart Contract.
+
+\section{Components}
+\large\justify The platform consists of five main components that work together to facilitate the life-cycle of the digital processes.
+\begin{enumerate}
+    \item Process Owner
+    \item Process Consumer
+    \item Process Runner
+    \item Permission Granting Application (PGA)
+    \item Data Mining Algorithm
+\end{enumerate}
+
+\newpage
+\begin{center}
+    \includegraphics[scale=.74]{blockdiagram.png}
+    \captionof{figure}{Platform Architecture}
+\end{center}
+
+\subsection{Process Owner}
+\large\justify The Process Owner is a key component of the platform, as it is responsible for creating the core logic and coding the algorithm for the process. It delivers the process to the platform, which can then be requested by multiple consumers for their business purposes.
+
+\large\justify To create the process in the chain, the Process Owner follows a specific set of steps. Firstly, it packages the algorithm files in a Docker image along with all necessary dependencies. This image is then sent to a Docker registry, which is a central location where images are stored and made available for use. Finally, the Process Owner executes the CreateProcess function, which initiates the process of creating the process in the chain. This function is typically handled by the Smart Contract, which stores data related to processes, runners, and instances and provides the necessary functions to facilitate the life-cycle of digital processes.
+
+\subsection{Process Consumer}
+\large\justify The Process Consumer is another important component of the platform. It is the entity that needs to perform an instance of the digital process for its business purposes. Process Consumer may be a company, individual, or organization that requires the services of the digital process to further their operations or achieve their goals. The Process Consumer initiates the process of consuming a process by requesting a new instance of the process through the ProcessInstance function, which is typically handled by the Smart Contract. This function selects the fastest Process Runner by predicting the execution time for each registered and available runner and assigns the task to the most suitable runner. The Process Consumer then works with the Process Runner and other components, such as the Cloud Storage and Permissions Granting Application (PGA), to store and retrieve the necessary inputs and outputs for the process instance. Once the instance is complete, the outputs are retrieved by the Process Consumer and used as needed for its business purposes.
+
+\subsection{Process Runner}
+\large\justify The Process Runner is a key component of the platform, as it provides the necessary computational resources to execute the process instance. It is responsible for running the related image in a container, which is a lightweight and isolated environment that allows the process instance to be executed without interference or interference from other processes or systems. The Process Runner is typically assigned to a task by the Smart Contract through the ProcessInstance function, which predicts the execution time for each registered and available runner and assigns the task to the most suitable runner. The Process Runner then retrieves the necessary inputs from the Cloud Storage and executes the process instance in the container. Once the instance is complete, the outputs are stored in the Cloud Storage and retrieved by the Process Consumer. The Process Runner plays a crucial role in the process of consuming a process, as it provide the necessary resources and expertise to execute the process instance efficiently and effectively.
+
+\subsection{Permission Granting Application (PGA)}
+\large\justify The Permissions Granting Application (PGA) is a critical component of the platform, as it is responsible for managing permissions on files in the Cloud Storage. This includes the ability to assign and revoke permissions as needed to ensure that only authorized entities have access to specific files. The PGA plays a crucial role in the process of consuming a process, as both the Process Consumer and Process Runner need to interact with the Cloud Storage to store and retrieve instance inputs and outputs. Without the PGA, it would not be possible to properly manage permissions and ensure that only authorized entities have access to the necessary files.
+
+\subsection{Data Mining Algorithm}
+\large\justify The Data Mining Algorithm is an external component that plays a critical role in the platform by collecting past instances metrics from the chain and training the execution time prediction Artificial Neural Network (ANN) for each registered runner and known process on a regular basis. The ANN is a machine learning model that is designed to mimic the way the human brain functions and is used to predict the execution time of a process instance based on various factors, such as the capabilities of the Process Runner and the characteristics of the process itself.
+
+\large\justify The Data Mining Algorithm collects metrics from past instances and uses this data to train the ANN on a regular basis. This allows the ANN to continually improve its predictions and provide more accurate estimates of the execution time for each registered runner and known process. At the end of each training, the Data Mining Algorithm pushes updated weights for each runner to the Database Smart Contract in the Blockchain. These weights are used by the Smart Contract to make more accurate predictions of the execution time when assigning tasks to Process Runners through the ProcessInstance function. The Data Mining Algorithm plays a crucial role in ensuring that the platform is able to efficiently and effectively execute process instances and provide accurate predictions of execution times.
+
+\section{Smart Contracts}
+\large\justify The platform relies on two Smart Contracts developed in Solidity programming language to facilitate the life-cycle of digital processes.
+\begin{enumerate}
+    \item Process Smart Contract
+    \item Oracle Smart Contract
+\end{enumerate}
+
+\subsection{Process Smart Contract}
+\large \justify This Smart Contract stores data on processes, runners, and instances. It also provides the CreateProcess and ProcessInstance functions, which represent the main transactions in the Blockchain. The Process model includes the relevant Docker image name and the docker SHA-256 digest, which ensures the integrity of the execution and encodes the process logic in the Smart Contract and the Blockchain.
+
+\begin{center}
+    \includegraphics[scale=1]{smartcontract.PNG}
+    \captionof{figure}{Solidity Code Snippet for Process Smart Contract}
+\end{center}
+
+\large\justify When the Process Owner invokes the CreateProcess function in the Smart Contract, it creates a new unique process identified by the related Docker image digest. The Process Runner is then only allowed to use that image when it is assigned a new instance. If the runner has a different version in its local repository, it must first pull the required image from the remote registry before executing the instance. The ProcessInstance function is responsible for selecting the fastest Process Runner by predicting the execution time for each registered available runner based on the weights stored in the Oracle Smart Contract. If the first assigned runner refuses the task, the Smart Contract attempts to assign it to the next fastest runner until one accepts or there are no more available runners. If no runner accepts, the instance ends and the consumer is notified so that it can try again at a later time.
+
+\subsection{Oracle Smart Contract}
+\large\justify The Oracle Smart Contract is an essential component of the platform, as it is used to store the calculated weights of each ANN that has been trained on past instance metrics. These weights are regularly updated by the Data Mining Algorithm, which is responsible for collecting metrics from past instances and training the ANNs. The Oracle Smart Contract plays a crucial role in ensuring the accuracy and reliability of the platform, as it stores the updated weights that are used to predict the execution time of processes. The entire process of updating the weights in the Oracle Smart Contract is implemented in the Data Mining Application.
+
+\section{Client Applications}
+\large\justify The interaction of the components with the Blockchain and the Smart Contracts is carried out by using client applications that invoke functions in the Smart Contract and listen to the chain events. The proposed architecture has four client applications.
+\begin{enumerate}
+    \item Process Client Application
+    \item Process Runner Application
+    \item Permission Granting Application
+    \item Data Mining Application
+\end{enumerate}
+
+\subsection{Process Client Application}
+\large\justify The Process Client Application is a key component of the platform, as it is responsible for implementing the Create Process and Consume Process use cases. This application interacts with the Cloud Storage to store instance inputs and retrieve instance outputs, and it can also be connected with third-party applications to exchange files and data. The Process Client Application plays a central role in facilitating the execution of digital processes, as it coordinates the actions of the Process Owner, Process Consumer, and Process Runner to ensure that the process is performed smoothly and efficiently. This application is an essential tool for businesses and organizations that need to perform digital processes as part of their operations, as it helps to streamline the process of creating and consuming processes and ensures that all necessary resources are available when needed.
+
+\subsection{Process Runner Application}
+\large\justify The Process Runner Application is an important component of the platform, as it is responsible for implementing the Consume Process use case and interacting with the Docker host to pull requested images from the registry and run the instance container for process execution. This application also interacts with the Cloud Storage to retrieve instance inputs and store instance outputs. The Process Runner Application plays a crucial role in the process of consuming a digital process, as it is responsible for providing the computational resources necessary to execute the process instance. This application is essential for businesses and organizations that need to perform digital processes as part of their operations, as it helps to ensure that the process is performed smoothly and efficiently. The Process Runner Application is also responsible for interacting with the Cloud Storage to retrieve and store instance inputs and outputs, which is an important step in the process of consuming a digital process.
+
+\subsection{Permission Granting Application}
+\large\justify The Permissions Granting Application (PGA) is the component that is responsible for managing permissions on files stored in a cloud storage system. It is used in a use case involving the consumption of a process. In this use case, a process consumer requests a new instance of a process by calling the ProcessInstance function. The process is then executed by a process runner, who may need to interact with the cloud storage to store and retrieve instance inputs and outputs. In order to allow the process consumer and process runner to access the necessary files, the PGA assigns and revokes the necessary permissions.
+
+\subsection{Data Mining Application}
+\large\justify The Data Mining Application is a key component of the platform, as it is responsible for collecting past instances metrics and training artificial neural networks (ANNs) to predict the execution time of digital processes. This application collects data from the Process Smart Contract on a regular basis, using the day of the week and time band (hour of day) as inputs and the actual running time in seconds as the output. The data is then used to train a single multilayer perceptron ANN for each runner and each process, using standard back-propagation techniques. ANNs are widely used for regression problems, where a set of inputs is used to predict a real-valued quantity.
+
+\large\justify After training, the calculated weights are pushed to the Oracle Smart Contract to be used for future instances running time prediction. This process ensures that the task assignment process is deterministic and can be easily integrated into a Blockchain-based architecture. The Data Mining Application plays a crucial role in ensuring the accuracy and reliability of the platform, as it helps to predict the execution time of processes and ensure that the appropriate computational resources are allocated to each process.
+\newpage
+\chapter{CASE STUDY}
+
+\large\justify An implementation of the proposed architecture is presented for the manufacturing of ophthalmic lenses. The manufacturing of ophthalmic lenses is a complex process that requires the production of single, specific pieces based on unique medical prescriptions and involves a high amount of data and complex optimization. Cybersecurity issues must also be considered to ensure the ownership of the lenses design and implementation software.
+
+\large\justify To address these challenges, the proposed technology is applied to the case study of lens manufacturing, which is made up of five steps: Calculation, Surfacing, Polishing, Coating, and Edging. The focus is on the Calculation step, which is a pure digital process. A typical lens calculation software used in this step is called the Lens Design System (LDS). The proposed technology is expected to provide benefits in terms of the security, efficiency, and reliability of the lens manufacturing process.
+
+\section{Lens Design System (LDS)}
+\large\justify The process of producing a surface on the back of a semi-finished lens begins with the input of a patient's ophthalmic prescription, which is referred to as a job. This job is then processed by a LDS (Lens Design Software) which performs a mathematical calculation to produce the data that will be sent to a CNC (Computer Numerical Control) machine to create the desired surface on the lens. The exchange of data between machines and systems in the eye care industry is regulated by the Vision Council of America's Data Communication Standard.
+
+\large\justify The input file for a job typically includes prescription data along with other relevant manufacturing parameters, which are identified by a record label followed by a record separator and the field values for right and left eyes, separated by a semicolon. Some of the most relevant labels in this process include LNAM, which determines the type of lens surface to be calculated, and LMS and SDF, which refer to the output files containing the radius of a sphere or torus for conventional geometric shapes or a matrix describing the whole surface for freeform shapes, respectively.
+
+\begin{center}
+    \includegraphics[scale=.74]{workflow.png}
+    \captionof{figure}{Lens Design System Process}
+\end{center}
+
+\large\justify The type of lens surface to be calculated can significantly affect the calculation time, as it determines the complexity of the mathematical problem to be solved. Conventional single vision lenses, which have a spherical or toric shape, can be easily computed and the resulting LMS file will simply include the radius of the sphere or torus. Progressive lenses, on the other hand, require the solution of a differential geometry problem to compute the resulting freeform surface. These problems are often computationally intensive and can take several seconds to process. In these cases, an additional SDF file is needed to describe the entire surface of the lens.
+
+\begin{center}
+    \includegraphics[scale=.74]{job_input.png}
+    \captionof{figure}{LDS Job Input File}
+\end{center}
+
+\large\justify Overall, the process of creating a surface on a semi-finished lens involves the input of a patient's ophthalmic prescription, the use of LDS to perform a mathematical calculation and produce the necessary data, and the use of a CNC machine to realize the desired surface on the lens. The exchange of data between machines and systems in the eye care industry is regulated by the Data Communication Standard, which ensures the accuracy and consistency of the data being transmitted. The complexity of the mathematical calculations and the resulting output files will depend on the type of lens surface being produced, with conventional single vision lenses being simpler to calculate than progressive lenses.
+\begin{center}
+    \includegraphics[scale=.74]{job_output.png}
+    \captionof{figure}{LMS Job Output File}
+\end{center}
+
+\section{Implementation}
+\large\justify The Lens Design System (LDS) proposed in the case study is designed to facilitate the process of lens design and calculation. It consists of three main actors: the Lens Designer, the Lens Manufacturer, and the Surface Calculator. The Lens Designer is responsible for implementing the calculation algorithm and packaging it into a Docker image, which is then pushed to a container registry. The Lens Manufacturer is the consumer of the lens design process, while the Surface Calculator is responsible for running the calculations.
+
+\large\justify The LDS is based on a process smart contract that encodes the calculation logic by including the Docker digest in the model. The smart contract is in charge of managing the process flow, but does not need to be modified to support the specific case study. The implementation of the CreateProcess and ConsumeProcess functions for adding new lens designs and requesting new calculations is straightforward.
+
+\large\justify The client applications for the Lens Designer and Lens Manufacturer do not require any particular changes from the proposed architecture. They simply need to collect input and output files on the client and runner edges. However, the Process Client Application for the Lens Manufacturer needs to be connected to the company's information system to allow the CNC machine to retrieve the calculated surface. In this case study, Amazon S3 is chosen as the cloud storage platform, so both the Lens Manufacturer and Surface Calculator will need to have accounts on this platform in order to store and retrieve files.
+
+\large\justify In order to ensure the security and reliability of the LDS, it is important to carefully consider the deployment and management of the smart contract. This includes determining the appropriate blockchain platform and choosing the right deployment strategy. It is also important to consider the scalability of the LDS, as the number of lens design calculations may increase over time. To address this issue, load balancing or other scalability solutions may be implemented.
+
+\large\justify Overall, the proposed LDS offers a streamlined and efficient solution for lens design and calculation. It allows for the automation of the process flow and eliminates the need for manual intervention, leading to improved efficiency and accuracy. By utilizing the power of blockchain and smart contracts, the LDS also offers a secure and transparent platform for all parties involved in the lens design process.
+
+ 
+\section{Running Time Prediction ANN}
+\large\justify The Data Mining Application in this case study is designed to collect metrics from past lens calculation instances and train a model for each runner and process. The purpose of this application is to predict the running time of a single lens design instance on a particular runner at a specific time. This prediction is based on the assumption that the calculation time for a particular design is fairly stable, unless there are other simultaneous processes running on the node that require the shared resources of CPU and memory.
+
+\large\justify To evaluate the efficacy of the prediction approach, a c5d.large node on Amazon Web Services is chosen, which is equipped with two Intel Xeon 3.6Ghz vCPUs and 4GB of RAM.A progressive lens design is selected and a set of 9143 calculations is performed in order to obtain a reference value of running time in seconds under both busy and normal conditions. In the busy case, where multiple intensive processes are running at the same time on the node, the mean calculation time is 15 seconds with a standard deviation of 1.0 seconds. In the normal case, where only one process is running at a time, the mean calculation time is 7 seconds with a standard deviation of 0.5 seconds.
+
+\large\justify Using these calculated values and two normal distributions, multiple random datasets of 200 samples per hour is built, from 8:00 to 20:00, from Monday to Sunday. This results in a total of 18200 samples, which can be used to evaluate the performance of the sample node under different load conditions. By analyzing these samples, the accuracy of the prediction model can be determined and any potential issues or areas for improvement can be identified.
+
+\large\justify One potential issue with the Data Mining Application is the need for a large number of sample calculations in order to train the prediction model. This may be time-consuming and resource-intensive, particularly if the number of calculations required is large. To address this issue, it is important to optimise the data collection and analysis process, or machine learning techniques may be utilised to improve the accuracy of the prediction model.
+
+\large\justify Another potential issue is the need to account for changes in the calculation environment that may affect the running time of a particular lens design. For example, if the node experiences changes in hardware, software, or network conditions, this may impact the running time of the calculation. To address this issue, the calculation environment is continuously monitored and any relevant changes are incorporated into the prediction model.
+
+\large\justify Overall, the Data Mining Application offers a useful tool for predicting the running time of lens design calculations on a particular runner. By analyzing past calculation data and training a prediction model, it is possible to accurately forecast the running time of future calculations and optimize the calculation process. However, it is important to carefully consider the potential issues and challenges that may arise, and to continuously monitor and update the prediction model as needed.
+
+\newpage
+\chapter{EVALUVATION}
+\section{Performance of the Time Prediction ANN}
+\large\justify The Artificial Neural Network (ANN) described in the case study is designed to predict the running time of lens design calculations on a particular runner. It is based on a dataset of 18200 samples and the samples are divided into two categories: busy state, with a mean calculation time of 15 seconds and a standard deviation of 1 second, and normal state, with a mean calculation time of 7 seconds and a standard deviation of 0.5 seconds.
+
+\large\justify To build the dataset, a two hour period for busy state condition on each day of the week was randomly selected. Then the first normal distribution was created, X1, with a mean value of 15 seconds and a standard deviation of 1 second, to represent the calculation time in busy state condition. The second normal distribution was also created, X2, with a mean value of 7 seconds and a standard deviation of 0.5 seconds, to represent the calculation time in normal state condition. Finally, 200 values were randomly sampled per hour either from X1 or X2 according to the corresponding state.
+
+\large\justify After generating the dataset, the ANN was built. Since the ANN is a multi-layer perceptron network, it requires numerical values as input. To transform the day of week and hour of day features into a single vector of only 0s and 1s for each sample,  One-Hot encoding technique was used. The resulting network consists of 20 neurons in the input layer, 21 neurons in the hidden layer, and a single neuron in the output layer, which represents the calculation time. The network is depicted in Figure 5.1.
+
+\begin{center}
+    \includegraphics[scale=.74]{network_infra.png}
+    \captionof{figure}{MLP Network Infrastructure}
+\end{center}
+
+\large\justify To evaluate the performance of the ANN, a variety of metrics were used, including Mean Absolute Error (MAE), Mean Squared Error (MSE), and Root Mean Squared Error (RMSE). These metrics are commonly used to assess the accuracy of prediction models and provide a measure of how close the predicted values are to the actual values.
+
+\large\justify The ANN used in the case study demonstrated strong performance in predicting the running time of lens design calculations. The low values of  MAE, MSE, and RMSE indicate that it was able to accurately forecast the calculation times with a high degree of accuracy, despite some variability in performance across different days and times. This suggests that the ANN was able to effectively capture the key factors that influence the running time of lens design calculations, such as the workload on the node and the availability of shared resources such as CPU and memory.
+
+\large\justify To train the ANN, MSE was chosen as the loss function and Rectified Linear Unit (ReLU) was chosen as the activation function. Adam's algorithm was used as the optimizer. This combination of loss function, activation function, and optimizer was chosen because it has been shown to achieve good performance in a variety of neural network applications. The training process converged to an MSE of 0.38 for both the training and test sets in less than 10 epochs, as shown in Figure 5.2. This residual MSE of 0.38 corresponds to an RMSE of 0.61 seconds, which allows for the prediction of calculation times with sufficient accuracy for the purposes of the platform.
+
+\begin{center}
+    \includegraphics[scale=.84]{trainingepoch.png}
+    \captionof{figure}{Training Epochs vs MSE}
+\end{center}
+
+\large\justify To demonstrate the effectiveness of the ANN after training, the ANN was used to predict the calculation times of the last 100 samples of the test set and plotted both the actual and predicted values in Figure 5.3. This figure shows that the ANN was able to accurately capture the time periods when a specific node is busy, and therefore was able to select an alternative free node for the calculation of a particular lens design instance in the shortest possible time. Overall, the ANN demonstrated strong performance in predicting the running time of lens design calculations and played a critical role in optimizing the calculation process on the platform.
+
+\begin{center}
+    \includegraphics[scale=.89]{effectiveness.png}
+    \captionof{figure}{Effectiveness of Time Prediction ANN}
+\end{center}
+\newpage
+
+
+\section{Disadvantages of Previous Systems}
+\large\justify There are several LDS design softwares such as IOT and ProCrea. IOT is a monolithic software package that has to be installed on a lens manufacturer calculation server whereas ProCrea is a client-server architecture providing calculation service that executes through a centralized platform. Some of their disadvantages are mentioned below.
+
+\begin{enumerate}
+    \item Lack of Flexibility
+    \item Lack of Parallelization
+    \item Lack of Reliability
+    \item Lack of Security
+    \item Constrained Requirements
+\end{enumerate}
+
+\subsection{Lack of Flexibility}
+\large\justify One major disadvantage of the previous lens design systems is their lack of flexibility. Both IOT and ProCrea offer a limited number of lens designs, with only ten different designs available for single vision and progressive lenses. This means that the availability of new designs for the lens manufacturer is dependent on the updates provided by these legacy solutions.
+
+\large\justify This lack of flexibility can be a significant problem for lens designers who wish to make their designs available to the market. It is not easy for a lens designer to make a new design available without relying on one of these legacy systems, which can be a significant barrier to entry. This lack of flexibility limits the ability of lens designers to innovate and bring new designs to the market, which can stifle competition and limit the options available to manufacturers.
+
+\subsection{Lack of Parallelization}
+\large\justify Another significant disadvantage of the previous lens design systems is their inability to parallelize calculations. Both IOT and ProCrea execute instances one by one in a queue, which means that it is not possible to run multiple calculations simultaneously. This can result in long processing times, particularly when there are large queues of instances to be processed.
+
+\large\justify The inability to parallelize calculations can have a significant impact on product lead time, as it can take a long time for all calculations to be completed. This can significantly slow down the overall production process and impact the efficiency of the system. The lack of parallelization can also be a major bottleneck in the system, as it can limit the number of calculations that can be processed at any given time. This can ultimately limit the overall capacity of the system and impact its ability to meet the needs of manufacturers and other users.
+
+\subsection{Lack of Reliability}
+\large\justify Lack of reliability is a significant problem. In the case of IOT, any fault with the local server would result in a production stop, which can have significant consequences for the manufacturer. This lack of reliability can result in production delays, lost revenue, and other problems that can impact the efficiency and profitability of the system. In the case of ProCrea, a fault with the centralized platform would prevent on-premise clients from making new calculations. This can disrupt the calculation process and impact the ability of the manufacturer to meet its production goals.
+
+\subsection{Lack of Security}
+\large\justify Lack of security is another disadvantage. The details and accounting of calculated jobs are stored in either a local on-premise server or a centralized platform database, which means that there is no guarantee that these data cannot be damaged, lost, or altered. This can compromise the integrity of economic transactions and create significant risks for manufacturers and other users.
+
+\large\justify The lack of security in these systems can also be a major concern in terms of data protection and privacy. These systems store sensitive data that could be accessed by unauthorized parties, which could result in data breaches, identity theft, and other problems. This lack of security can be a significant barrier to adoption and limit the appeal of these systems to manufacturers and other users.
+
+\subsection{Constrained Requirements}
+\large\justify Constrained requirements pose another problem. In particular, ProCrea client software is Java-based and requires a specific version of the Java Runtime Environment, which can be a significant constraint for manufacturers and other users. This can limit the flexibility of the system and make it difficult for manufacturers to customize and adapt it to their needs.
+
+\large\justify IOT, which is Microsoft .NET-based, makes calculations locally, which means that calculation time is strictly dependent on the amount of CPU and memory available on the on-premise server. This can be a significant constraint, as it limits the ability of the system to scale and meet the needs of manufacturers and other users.
+
+\section{Advantages of the Proposed Architecture}
+\large\justify By implementing a Lens Design System using the proposed architecture, the following improvements are achieved.
+
+\begin{enumerate}
+    \item Collaboration
+    \item Performance
+    \item Cybersecurity
+    \item Costs
+\end{enumerate}
+
+\subsection{Collaboration}
+\large\justify Collaboration is one of the key advantages of the newly proposed system. The platform is designed to be shared and decentralized, allowing multiple lens designers to make their algorithms available in the form of self-contained Docker images. This enables computational resources providers to register as calculators and provide their services to the manufacturer.
+
+\large\justify The integration of new or updated lens designs is also made easier by the use of the same client for all designs. This means that there is no need for any structural changes or significant reconfigurations of the environment in order to incorporate new designs. This helps to streamline the process of integrating new designs and ensures that the platform remains flexible and adaptable.
+
+\subsection{Performance}
+\large\justify Performance is another key advantage of the new architecture. The distributed and fault-tolerant nature of the solution allows the manufacturer to run multiple calculations simultaneously on different runners. This helps to improve the overall performance of the system in terms of computational time and reliability.
+
+\large\justify By distributing the calculations across multiple runners, the manufacturer can take advantage of the available computational resources and speed up the calculation process. This can help to reduce the overall time required for the calculations, improving the efficiency of the system. Additionally, the fault-tolerant design of the system ensures that the calculations will continue to be completed even if one or more runners fail. This helps to increase the reliability of the system and ensure that the calculations are completed successfully.
+
+\subsection{Cybersecurity}
+\large\justify The proposed system ensures cybersecurity. The use of a blockchain platform ensures that all economic transactions related to the platform, including the fees charged to the manufacturer and paid to lens designers and surface calculators, are tamper-proof. This helps to protect against fraud and tampering, ensuring that all transactions are carried out in a secure and transparent manner.
+
+\large\justify The use of the Ethereum platform in the proposed system also provides an additional layer of security. Ethereum allows for the implementation of a dedicated ERC-20 token, which can be used to finalize transactions right on the chain. This helps to further protect against fraud and tampering, ensuring that all transactions are carried out securely and transparently.
+
+\subsection{Costs}
+\large\justify The new architecture significantly reduces costs. The use of a cloud storage service ensures that input and output files are stored for the long term at low cost. This helps to prevent data loss on the manufacturer's side and ensures that all necessary data is available when needed.
+
+\large\justify The implementation of the blockchain in a consortium fashion, as in the proposed platform, also helps to keep costs under control. The cost of executing transactions in Ethereum is managed and can even be zeroed in some cases. This helps to keep the overall costs of the system low, making it more accessible and cost-effective for all parties involved.
+
+
+\newpage
+
+\chapter{	CONCLUSION}
+
+\thispagestyle{fancy}
+
+\large\justify The proposed architecture provides a new platform that uses Blockchain technology to improve digital processes in a distributed and decentralized environment. By integrating two popular cloud technologies, Docker and Cloud Storage, this platform provides a flexible and scalable solution for manufacturers and other users. Various roles like Process Owner, Process Consumer, and Process Runner are identified, which are the key actors in the system. In addition, a simple task assignment problem is introduced, which is implemented using an ANN approach. It is designed to improve performance and decrease execution times. Finally, a case study is discussed that demonstrates how this platform can be implemented in the ophthalmic lenses manufacturing environment, specifically in lens design systems. The case study illustrates the benefits of this platform in terms of flexibility, performance, cybersecurity, costs, and collaboration. Overall, this platform offers a promising solution for improving digital processes in the manufacturing industry and beyond.
+
+
+
+\newpage
+
+\pagenumbering{roman}
+\setcounter{page}{4}
+\addcontentsline{toc}{chapter}{References}
+
+\begin{thebibliography}{13}
+\sloppy
+\item{A. Haridas, A. A. Samad, D. Vysakh, and V. Pathari, ‘‘A Blockchain-based platform for Smart Contracts and Intellectual Property Protection for the Additive Manufacturing Industry’’, IEEE Int. Conf. Signal Process., Informat., Commun. Energy Syst., Mar 2022.
+}
+
+\sloppy
+\item{J. Leng, S. Ye, M. Zhou, J. L. Zhao, Q. Liu, W. Guo, W. Cao, and L. Fu,
+‘‘Blockchain-secured Smart Manufacturing in Industry 4.0’’, IEEE Trans. Syst.,
+Man, Cybern., Syst, Jan 2020.
+}
+
+\sloppy
+\item{T. Hewa, A. Braeken, M. Liyanage, and M. Ylianttila, ‘‘Fog Computing and
+Blockchain-based Security Service Architecture for Industrial IoT- enabled
+Cloud Manufacturing’’, IEEE Trans. Ind. Informat., Oct. 2022.
+}
+
+\sloppy
+\item{J. A. Garcia, N. Sanchez, D. Lizcano, M. J. Escalona, and T. Wojdynski, ‘‘Using Blockchain to Improve Collaborative Business Process Management’’, IEEE Access, Jan. 2020.
+}
+
+\end{thebibliography}
+
+
+\end{document}
